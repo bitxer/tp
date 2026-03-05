@@ -267,8 +267,15 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* at teaching position that need to manage contacts of students
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+Focusing on the unique hierarchy of campus life:
+
+Mapping students by course codes, TAs by labs and tutorials.
+
+Allows a professor or teaching assistant to retrieve vital contact context or generate student lists quickly, ensuring that managing a massive network of names never interrupts the flow of deep work or teaching.
 
 
 ### User stories
