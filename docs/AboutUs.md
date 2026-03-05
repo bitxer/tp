@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### bitxer
+
+<img src="images/bitxer.png" width="200px">
+
+[[github](http://github.com/bitxer)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
 ### Jia Wen
 
 <img src="images/incursi0n.png" width="200px">
@@ -33,3 +42,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/blahblahlolhahaha)]
 * Role: Developer
 * Responsibilities: Code
+
