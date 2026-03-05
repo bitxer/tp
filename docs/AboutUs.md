@@ -50,3 +50,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/EOKwingster)]
 * Role: Developer
 * Responsibilities: Code
+
+### David-The-Programmer
+
+<img src="images/david-the-programmer.png" width="200px">
+
+[[github](http://github.com/David-The-Programmer)]
+
+* Role: Developer
+* Responsibilities: UI
+
