@@ -21,22 +21,22 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Username("alex_yeoh"), new Role("Teaching Assistant"),
+                new Username("alexyeoh"), new Role("Teaching Assistant"),
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Username("bernice_yu"), new Role("Teaching"),
+                new Username("berniceyu"), new Role("Teaching"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Username("charlotte_o"), new Role("Teaching Temp"),
+                new Username("charlotteo"), new Role("Teaching Temp"),
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Username("david_li"), new Role("Teaching Assistant"),
+                new Username("davidli"), new Role("Teaching Assistant"),
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Username("irfan_i"), new Role("Teaching"),
+                new Username("irfani"), new Role("Teaching"),
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Username("roy_b"), new Role("Teaching Assistant"),
+                new Username("royb"), new Role("Teaching Assistant"),
                 getTagSet("colleagues"))
         };
     }

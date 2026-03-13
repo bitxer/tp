@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_USERNAME_AMY = "amy_bee";
-    public static final String VALID_USERNAME_BOB = "bob_choo";
+    public static final String VALID_USERNAME_AMY = "amybee";
+    public static final String VALID_USERNAME_BOB = "bobchoo";
     public static final String VALID_ROLE_AMY = "Teaching Assistant";
     public static final String VALID_ROLE_BOB = "Professor";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -54,10 +54,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911"; // not exactly 8 digits
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_USERNAME_DESC = " " + PREFIX_USERNAME; // empty string not allowed
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE; // empty string not allowed
+    public static final String INVALID_USERNAME_DESC = " " + PREFIX_USERNAME + "amy_bee"; // '_' not allowed
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "TA@CS"; // '@' not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

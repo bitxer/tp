@@ -40,6 +40,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_USERNAME = "This username already exists in the address book";
 
     private final Person toAdd;
 
@@ -57,6 +60,24 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        boolean hasDuplicatePhone = model.getAddressBook().getPersonList().stream()
+                .anyMatch(p -> p.getPhone().equals(toAdd.getPhone()));
+        if (hasDuplicatePhone) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        boolean hasDuplicateEmail = model.getAddressBook().getPersonList().stream()
+                .anyMatch(p -> p.getEmail().equals(toAdd.getEmail()));
+        if (hasDuplicateEmail) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        boolean hasDuplicateUsername = model.getAddressBook().getPersonList().stream()
+                .anyMatch(p -> p.getUsername().equals(toAdd.getUsername()));
+        if (hasDuplicateUsername) {
+            throw new CommandException(MESSAGE_DUPLICATE_USERNAME);
         }
 
         model.addPerson(toAdd);

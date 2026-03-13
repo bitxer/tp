@@ -27,11 +27,21 @@ public class RoleTest {
         // invalid roles
         assertFalse(Role.isValidRole("")); // empty string
         assertFalse(Role.isValidRole(" ")); // spaces only
+        assertFalse(Role.isValidRole("-")); // hyphens not allowed
+        assertFalse(Role.isValidRole("TA@CS")); // @ not allowed
+        assertFalse(Role.isValidRole("TA#1")); // hash not allowed
+        assertFalse(Role.isValidRole("TA!")); // exclamation not allowed
+        assertFalse(Role.isValidRole("TA_CS")); // underscores not allowed
+        assertFalse(Role.isValidRole("TA/CS")); // slashes not allowed
+        assertFalse(Role.isValidRole(" Teaching")); // leading space not allowed
 
         // valid roles
-        assertTrue(Role.isValidRole("Teaching Assistant"));
-        assertTrue(Role.isValidRole("-")); // one character
+        assertTrue(Role.isValidRole("Teaching Assistant")); // alphanumeric with spaces
+        assertTrue(Role.isValidRole("T")); // one character
+        assertTrue(Role.isValidRole("1")); // single digit
         assertTrue(Role.isValidRole("Professor of Computer Science")); // long role
+        assertTrue(Role.isValidRole("TA2")); // alphanumeric no spaces
+        assertTrue(Role.isValidRole("Level 3 Tutor")); // digits mixed with words
     }
 
     @Test

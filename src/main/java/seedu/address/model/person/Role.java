@@ -9,13 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Role {
 
-    public static final String MESSAGE_CONSTRAINTS = "Roles can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Roles should only contain alphanumeric characters and spaces, and should not be blank";
 
-    /*
-     * The first character of the role must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9][a-zA-Z0-9 ]*";
 
     public final String value;
 

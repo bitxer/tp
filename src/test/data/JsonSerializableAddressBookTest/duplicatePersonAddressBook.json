@@ -3,14 +3,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "username": "alice_pauline",
+    "username": "alicepauline",
     "role": "Teaching Assistant",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "username": "alice_pauline2",
+    "username": "alicepauline2",
     "role": "Student"
   } ]
 }

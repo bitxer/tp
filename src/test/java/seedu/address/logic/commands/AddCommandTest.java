@@ -54,6 +54,47 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_duplicatePhone_throwsCommandException() {
+        Person existingPerson = new PersonBuilder().withPhone("91234567").build();
+        Person newPerson = new PersonBuilder().withName("Different Name")
+                .withPhone("91234567") // same phone
+                .withEmail("different@example.com")
+                .withUsername("differentuser").build();
+        AddCommand addCommand = new AddCommand(newPerson);
+        ModelStub modelStub = new ModelStubWithPerson(existingPerson);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Person existingPerson = new PersonBuilder().withEmail("same@example.com").build();
+        Person newPerson = new PersonBuilder().withName("Different Name")
+                .withPhone("99999999")
+                .withEmail("same@example.com") // same email
+                .withUsername("differentuser").build();
+        AddCommand addCommand = new AddCommand(newPerson);
+        ModelStub modelStub = new ModelStubWithPerson(existingPerson);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateUsername_throwsCommandException() {
+        Person existingPerson = new PersonBuilder().withUsername("sameuser").build();
+        Person newPerson = new PersonBuilder().withName("Different Name")
+                .withPhone("99999999")
+                .withEmail("different@example.com")
+                .withUsername("sameuser") // same username
+                .build();
+        AddCommand addCommand = new AddCommand(newPerson);
+        ModelStub modelStub = new ModelStubWithPerson(existingPerson);
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_USERNAME, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
@@ -174,6 +215,13 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            AddressBook addressBook = new AddressBook();
+            addressBook.addPerson(person);
+            return addressBook;
         }
     }
 

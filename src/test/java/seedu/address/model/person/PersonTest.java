@@ -49,9 +49,9 @@ public class PersonTest {
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        // name has extra word appended, all other attributes same -> returns false
+        String nameWithExtraWord = VALID_NAME_BOB + " Jr";
+        editedBob = new PersonBuilder(BOB).withName(nameWithExtraWord).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 

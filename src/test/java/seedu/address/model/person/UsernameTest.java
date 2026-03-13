@@ -27,19 +27,32 @@ public class UsernameTest {
         // invalid usernames
         assertFalse(Username.isValidUsername("")); // empty string
         assertFalse(Username.isValidUsername(" ")); // spaces only
+        assertFalse(Username.isValidUsername("amy_bee")); // underscores not allowed
+        assertFalse(Username.isValidUsername("-")); // hyphens not allowed
+        assertFalse(Username.isValidUsername("john doe")); // spaces not allowed
+        assertFalse(Username.isValidUsername("user@name")); // @ not allowed
+        assertFalse(Username.isValidUsername("user.name")); // dots not allowed
+        assertFalse(Username.isValidUsername("user#1")); // hash not allowed
+        assertFalse(Username.isValidUsername("user!")); // exclamation not allowed
+        assertFalse(Username.isValidUsername("user name")); // space in middle not allowed
+        assertFalse(Username.isValidUsername("123 456")); // space between digits not allowed
 
         // valid usernames
-        assertTrue(Username.isValidUsername("amy_bee"));
-        assertTrue(Username.isValidUsername("-")); // one character
-        assertTrue(Username.isValidUsername("john_doe_123")); // alphanumeric with underscores
+        assertTrue(Username.isValidUsername("amybee")); // alphabetic lowercase
+        assertTrue(Username.isValidUsername("AMYBEE")); // alphabetic uppercase
+        assertTrue(Username.isValidUsername("AmyBee")); // mixed case
+        assertTrue(Username.isValidUsername("a")); // single letter
+        assertTrue(Username.isValidUsername("1")); // single digit
+        assertTrue(Username.isValidUsername("johndoe123")); // alphanumeric
+        assertTrue(Username.isValidUsername("123456")); // digits only
     }
 
     @Test
     public void equals() {
-        Username username = new Username("valid_username");
+        Username username = new Username("validusername");
 
         // same values -> returns true
-        assertTrue(username.equals(new Username("valid_username")));
+        assertTrue(username.equals(new Username("validusername")));
 
         // same object -> returns true
         assertTrue(username.equals(username));
@@ -51,6 +64,6 @@ public class UsernameTest {
         assertFalse(username.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(username.equals(new Username("other_username")));
+        assertFalse(username.equals(new Username("otherusername")));
     }
 }
