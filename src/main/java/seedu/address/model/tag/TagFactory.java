@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.model.tag.restricted.CourseTagSchema;
 import seedu.address.model.tag.restricted.LabTagSchema;
 import seedu.address.model.tag.restricted.RestrictedTag;
@@ -53,16 +55,27 @@ public final class TagFactory {
      */
     public static AbstractTag create(String tag) throws IllegalArgumentException {
         requireNonNull(tag);
+
         String trimmedTag = tag.trim();
-        if (RestrictedTag.isRestrictedTag(trimmedTag)) {
-            var prefix = RestrictedTag.TagParts.parse(trimmedTag).get().prefix;
-            var schema = getAssociatedSchema(prefix);
-            return new RestrictedTag(schema, trimmedTag);
+        return tryCreateRestrictedTag(trimmedTag)
+                .or(() -> tryCreateTag(trimmedTag))
+                .orElseThrow(() -> new IllegalArgumentException(Tag.MESSAGE_CONSTRAINTS));
+    }
+
+    private static Optional<AbstractTag> tryCreateRestrictedTag(String trimmedTag) {
+        if (!RestrictedTag.isRestrictedTag(trimmedTag)) {
+            return Optional.empty();
         }
 
+        var prefix = RestrictedTag.TagParts.parse(trimmedTag).get().prefix;
+        var schema = getAssociatedSchema(prefix);
+        return Optional.of(new RestrictedTag(schema, trimmedTag));
+    }
+
+    private static Optional<AbstractTag> tryCreateTag(String trimmedTag) {
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new IllegalArgumentException(Tag.MESSAGE_CONSTRAINTS);
+            return Optional.empty();
         }
-        return new Tag(trimmedTag);
+        return Optional.of(new Tag(trimmedTag));
     }
 }
