@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_USERNAME_BOB;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -63,7 +62,7 @@ public class PersonTest {
         assertTrue(ALICE.equals(ref.inner));
         assertThrows(ImmutableEscapedScopeException.class, () -> {
             ref.inner.setName(new Name("this should fail"));
-        }, "Expected Person to be immutable after escaping scope");
+        });
     }
 
     @Test
@@ -108,8 +107,8 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", username=" + ALICE.getUsername()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", email=" + ALICE.getEmail() + ", username=" + ALICE.getUsername() + ", tags=" + ALICE.getTags()
+                + "}";
         assertEquals(expected, ALICE.toString());
     }
 
