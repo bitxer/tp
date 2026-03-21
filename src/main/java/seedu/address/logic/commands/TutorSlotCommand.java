@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -34,6 +36,8 @@ public class TutorSlotCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SLOT =
             "This time slot already exists for this teaching staff member.";
 
+    private static final Logger logger = LogsCenter.getLogger(TutorSlotCommand.class);
+
     private final Index targetIndex;
     private final TimeSlot timeSlot;
 
@@ -53,17 +57,21 @@ public class TutorSlotCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.fine("Tutorslot rejected: invalid index " + targetIndex.getOneBased()
+                    + " (list size " + lastShownList.size() + ")");
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person person = lastShownList.get(targetIndex.getZeroBased());
 
         if (!(person instanceof TeachingStaff staff)) {
+            logger.fine("Tutorslot rejected: person at index " + targetIndex.getOneBased() + " is not teaching staff");
             throw new CommandException(
                     String.format(MESSAGE_NOT_TEACHING_STAFF, targetIndex.getOneBased()));
         }
 
         if (staff.getAvailability().contains(timeSlot)) {
+            logger.fine("Tutorslot rejected: duplicate slot " + timeSlot + " for " + staff.getName());
             throw new CommandException(MESSAGE_DUPLICATE_SLOT);
         }
 
@@ -76,6 +84,8 @@ public class TutorSlotCommand extends Command {
                 updatedSlots);
 
         model.setPerson(staff, updatedStaff);
+        logger.info("Tutorslot success: added " + timeSlot + " for " + staff.getName()
+                + " at displayed index " + targetIndex.getOneBased());
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, staff.getName(), timeSlot.toDisplayString()));
     }

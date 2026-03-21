@@ -1,12 +1,14 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,9 +17,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Position;
 import seedu.address.model.person.TeachingStaff;
+import seedu.address.model.person.TimeSlot;
 import seedu.address.model.person.Username;
 
 public class JsonAdaptedPersonTest {
@@ -142,6 +146,30 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_USERNAME,
                         VALID_TYPE, VALID_POSITION, invalidTags, null);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_staffWithAvailability_parsesSlots() throws Exception {
+        List<JsonAdaptedTimeSlot> slots = List.of(
+                new JsonAdaptedTimeSlot("mon-10-12"),
+                new JsonAdaptedTimeSlot("tue-9-11"));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_USERNAME,
+                        VALID_TYPE, VALID_POSITION, VALID_TAGS, slots);
+        Person model = person.toModelType();
+        TeachingStaff staff = (TeachingStaff) model;
+        assertEquals(2, staff.getAvailability().size());
+        assertTrue(staff.getAvailability().contains(new TimeSlot("mon-10-12")));
+        assertTrue(staff.getAvailability().contains(new TimeSlot("tue-9-11")));
+    }
+
+    @Test
+    public void toModelType_invalidAvailabilitySlot_throwsIllegalValueException() {
+        List<JsonAdaptedTimeSlot> slots = Collections.singletonList(new JsonAdaptedTimeSlot("invalid-slot"));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_USERNAME,
+                        VALID_TYPE, VALID_POSITION, VALID_TAGS, slots);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
