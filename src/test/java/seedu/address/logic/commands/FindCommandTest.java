@@ -167,7 +167,7 @@ public class FindCommandTest {
         FindPersonDescriptor fd = new FindPersonDescriptor();
         fd.setName(processInput("keyword"));
         FindCommand findCommand = new FindCommand(fd);
-        String expected = FindCommand.class.getCanonicalName() + "{namePredicate=" + fd + ", tagPredicate=null}";
+        String expected = FindCommand.class.getCanonicalName() + "{findPersonDescriptor=" + fd + "}";
         assertEquals(expected, findCommand.toString());
     }
 
