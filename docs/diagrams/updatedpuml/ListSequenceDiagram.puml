@@ -41,7 +41,7 @@ deactivate Model
 ListCommand -> Model : getFilteredPersonList()
 activate Model
 
-Model --> ListCommand
+Model --> ListCommand : filteredList
 deactivate Model
 
 create CommandResult

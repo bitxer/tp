@@ -34,6 +34,10 @@ title: User Guide
 
    * `staffslist` : Lists only teaching staff. `studentslist` : Lists only students.
 
+   * `tutorslot 2 mon-10-12` : Adds Monday 10:00–12:00 availability to the 2nd person in the list (must be teaching staff).
+
+   * `tutordashboard` : Shows all teaching staff and their available time slots.
+
    * `delete 3` : Deletes the 3rd person shown in the current list (works for both students and staff).
 
    * `clear` : Deletes all contacts.
@@ -178,6 +182,34 @@ Adds an availability time slot to a teaching staff member. This allows tutors an
 
 ---
 
+### Viewing tutor availability dashboard : `tutordashboard`
+
+Displays a dashboard of all teaching staff and their available time slots, regardless of the currently displayed list.
+
+**Format:** `tutordashboard`
+
+**Behavior:**
+
+* Shows **all** teaching staff in the address book — not just those visible in the current filtered list.
+* For each staff member, lists their time slots sorted by day and start time.
+* Displays `(no slots set)` for staff members who have no slots added yet.
+
+**Example output:**
+
+```
+Tutor Availability Dashboard (3 tutor(s)):
+1. Benson Meier: Mon 10:00-12:00, Wed 14:00-16:00
+2. Daniel Meier: (no slots set)
+3. George Best: Fri 09:00-11:00
+```
+
+**Examples:**
+
+* `tutordashboard` — Shows the full availability dashboard for all teaching staff.
+* After `tutorslot 1 mon-10-12`, run `tutordashboard` to confirm the slot was added.
+
+---
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book. For teaching staff, you can also change their position.
@@ -306,6 +338,7 @@ _Details coming soon ..._
 | **List staff only** | `staffslist` |
 | **List students only** | `studentslist` |
 | **Tutor slot** | `tutorslot INDEX SLOT` <br> e.g., `tutorslot 1 mon-10-12` |
+| **Tutor dashboard** | `tutordashboard` |
 | **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/USERNAME] [pos/POSITION] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com` or `edit 1 pos/Professors` (staff only) |
 | **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake` |
 | **Delete** | `delete INDEX` <br> e.g., `delete 3` (index from current list: full, staff, or students) |

@@ -20,7 +20,8 @@ Class Name
 Class Phone
 Class Username
 Class Position
-Class AbstractTag
+Class TimeSlot
+Class "<<abstract>>\nAbstractTag" as AbstractTag
 
 Class I #FFFFFF
 }
@@ -43,10 +44,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Username
-Person *--> "*" AbstractTag
+Person o--> "*" AbstractTag
 
 TeachingStaff -up-|> Person
 TeachingStaff *--> Position
+TeachingStaff *--> "*" TimeSlot
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

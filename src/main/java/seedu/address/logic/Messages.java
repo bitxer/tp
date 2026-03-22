@@ -57,7 +57,9 @@ public class Messages {
             }
         }
         builder.append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        person.getTags().stream()
+                .sorted(java.util.Comparator.comparing(Object::toString))
+                .forEach(builder::append);
         return builder.toString();
     }
 
