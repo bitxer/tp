@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessModelOnly;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -85,16 +85,15 @@ public class AddTagCommandTest {
         expectedModel.setPerson(personToEdit, editedPerson);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
-        model.updateFilteredPersonList(p -> true);
     }
 
     @Test
     public void addTag_appends() {
-        final HashSet<AbstractTag> tagsToExpect = new HashSet<>(TAGS_TO_ADD);
-        tagsToExpect.addAll(BENSON.getTags());
+        final HashSet<AbstractTag> tagsToExpect = new HashSet<>(BENSON.getTags());
+        tagsToExpect.addAll(TAGS_TO_ADD);
 
-        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, TAGS_TO_ADD);
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, TAGS_TO_ADD);
 
         Person editedPerson = personToEdit.cloneInto(p -> {
             p.setTags(tagsToExpect);
@@ -103,15 +102,7 @@ public class AddTagCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);
 
-        try {
-            // same behaviour as assertCommandSuccess but without problematic string
-            // matching on output string
-            addTagCommand.execute(model);
-            assertEquals(expectedModel, expectedModel);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
-        model.updateFilteredPersonList(p -> true);
+        assertCommandSuccessModelOnly(addTagCommand, model, expectedModel);
     }
 
     @Test
@@ -131,8 +122,6 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, TAGS_TO_ADD);
         assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-
-        model.updateFilteredPersonList(p -> true);
     }
 
     @Test
