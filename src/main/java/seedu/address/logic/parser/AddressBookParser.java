@@ -38,7 +38,7 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
-    private static final Set<String> COMMAND_WORDS_NEEDS_CONFIRMATION = Set.of(
+    private static final Set<String> COMMAND_WORDS_REQUIRES_CONFIRMATION = Set.of(
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD
     );
@@ -66,7 +66,7 @@ public class AddressBookParser {
 
         Command command = parseCommandWord(commandWord, arguments, userInput);
 
-        if (COMMAND_WORDS_NEEDS_CONFIRMATION.contains(commandWord)) {
+        if (COMMAND_WORDS_REQUIRES_CONFIRMATION.contains(commandWord)) {
             return new RequireConfirmationCommand(userInput, command);
         } else {
             return command;
