@@ -36,6 +36,10 @@ public class FindPersonDescriptorTest {
         fdTwo.setName(Set.of("test4", "test5", "test6"));
         assertFalse(fdOne.equals(fdTwo));
 
+        // test copy -> returns true
+        fdOne = new FindPersonDescriptor(fdTwo);
+        assertTrue(fdOne.equals(fdOne));
+
         // different phone -> returns false
         fdOne = new FindPersonDescriptor();
         fdOne.setPhone(Set.of("11111111", "22222222", "3333333"));
@@ -56,13 +60,23 @@ public class FindPersonDescriptorTest {
         fdTwo = new FindPersonDescriptor();
         fdTwo.setTags(Set.of(new Tag("colleagues"), new Tag("students")));
         assertFalse(fdOne.equals(fdTwo));
+
+        // different usernames -> returns false
+        fdOne = new FindPersonDescriptor();
+        fdOne.setUsername(Set.of("first", "second"));
+        fdTwo = new FindPersonDescriptor();
+        fdTwo.setUsername(Set.of("colleagues", "students"));
+        assertFalse(fdOne.equals(fdTwo));
+
+
     }
 
     @Test
     public void toStringMethod() {
         FindPersonDescriptor fd = new FindPersonDescriptor();
         String expected = FindPersonDescriptor.class.getCanonicalName() + "{name="
-                + fd.getName().orElse(null) + ", phone="
+                + fd.getName().orElse(null) + ", username="
+                + fd.getUsername().orElse(null) + ", phone="
                 + fd.getPhone().orElse(null) + ", email="
                 + fd.getEmail().orElse(null) + ", tags="
                 + fd.getTags().orElse(null) + "}";

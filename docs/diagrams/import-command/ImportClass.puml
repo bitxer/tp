@@ -1,0 +1,30 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class Command {
+    + {abstract} execute(Model): CommandResult
+}
+
+class ImportCommand {
+    + {static} COMMAND_WORD: String
+    + {static} MESSAGE_USAGE: String
+    + {static} MESSAGE_SUCCESS: String
+    - filePath: String
+    + ImportCommand(String)
+    + execute(Model): CommandResult
+    + equals(Object): boolean
+    + toString(): String
+}
+
+class CsvImporter {
+    + {static} importContacts(Model, String): void
+}
+
+Command <|-- ImportCommand
+ImportCommand ..> CsvImporter : calls >
+ImportCommand ..> CommandResult : creates >
+ImportCommand ..> CommandException : throws >
+ImportCommand ..> Model : interacts with >
+
+@enduml
