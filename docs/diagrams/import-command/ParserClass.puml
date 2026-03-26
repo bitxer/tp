@@ -1,0 +1,28 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+interface "Parser<T>" as Parser {
+    +parse(String): T
+}
+
+class ImportCommandParser {
+    +parse(args: String): ImportCommand
+}
+
+class ArgumentTokenizer {
+    + {static} tokenize(args: String, prefixes: Prefix...): ArgumentMultimap
+}
+
+class ArgumentMultimap {
+    +getPreamble(): String
+    +getValue(prefix: Prefix): Optional<String>
+}
+
+Parser <|.. ImportCommandParser
+ImportCommandParser ..> ArgumentTokenizer : uses >
+ImportCommandParser ..> ArgumentMultimap : uses >
+ImportCommandParser ..> ImportCommand : creates >
+ImportCommandParser ..> ParseException : throws >
+
+@enduml

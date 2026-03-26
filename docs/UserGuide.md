@@ -3,48 +3,57 @@ layout: page
 title: User Guide
 ---
 
-**Doritus** is an address book software for NUS teaching staff to manage student contacts. It is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Doritus can get your contact management tasks done faster than traditional GUI apps.
+**Doritus** is an address book software for NUS teaching staff to manage student contacts. It is **optimized for use via
+a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
+fast, Doritus can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   **Mac users:** Ensure you have the precise JDK version
+   prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Doritus data.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
+   command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts (students and teaching staff).
+    * `list` : Lists all contacts (students and teaching staff).
 
-   * `add n/John Doe p/98765432 e/johnd@example.com u/johndoe123 t/friends` : Adds a student.
+    * `add n/John Doe p/98765432 e/johnd@example.com u/johndoe123 t/friends` : Adds a student.
 
-   * `add staff n/Jane Smith` : Adds a teaching staff (tutor) with name only; phone, email, username and position use defaults.
+    * `add staff n/Jane Smith` : Adds a teaching staff (tutor) with name only; phone, email, username and position use
+      defaults.
 
-   * `staffslist` : Lists only teaching staff. `studentslist` : Lists only students.
+    * `staffslist` : Lists only teaching staff. `studentslist` : Lists only students.
 
-   * `tutorslot 2 mon-10-12` : Adds Monday 10:00–12:00 availability to the 2nd person in the list (must be teaching staff).
+    * `tutorslot 2 mon-10-12` : Adds Monday 10:00–12:00 availability to the 2nd person in the list (must be teaching
+      staff).
 
-   * `tutordashboard` : Shows all teaching staff and their available time slots.
+    * `tutordashboard` : Shows all teaching staff and their available time slots.
 
-   * `delete 3` : Deletes the 3rd person shown in the current list (works for both students and staff).
+    * `delete 3` : Deletes the 3rd person shown in the current list (works for both students and staff).
 
-   * `export` : Exports all contacts to a CSV file.
+    * `export` : Exports all contacts to a CSV file.
 
-   * `clear` : Deletes all contacts.
+    * `import` : Imports contacts from a CSV file.
 
-   * `exit` : Exits the app.
+    * `clear` : Deletes all contacts.
+
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -68,23 +77,32 @@ title: User Guide
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+  ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
+  as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </div>
 
 ### Types of tags
+
 - General purpose tags: Alphanumeric characters only (e.g. `examDuty`)
 - Special tags: these tags follow a specific format
-  - Tutorial groups: begins with `tut:`, followed by an optional uppercase letter and maximally 2 digits (e.g. `tut:A11`, `tut:17`, `tut:2`)
-  - Lab groups: begins with `lab:`, followed by an optional uppercase letter and maximally 2 digits (e.g. `lab:A11`, `lab:17`, `lab:2`)
-  - Course: begins with `course:`, followed 2-4 uppercase letters, proceeded by 4 digits and an optional uppercase suffix letter (e.g. `course:CS2103`, `course:CS2103T`, `course:GESS1000T`)
+    - Tutorial groups: begins with `tut:`, followed by an optional uppercase letter and maximally 2 digits (e.g.
+      `tut:A11`, `tut:17`, `tut:2`)
+    - Lab groups: begins with `lab:`, followed by an optional uppercase letter and maximally 2 digits (e.g. `lab:A11`,
+      `lab:17`, `lab:2`)
+    - Course: begins with `course:`, followed 2-4 uppercase letters, proceeded by 4 digits and an optional uppercase
+      suffix letter (e.g. `course:CS2103`, `course:CS2103T`, `course:GESS1000T`)
 
 ### Input history
+
 The `up` and `down` arrow keys can be used to navigate previously entered commands within the same session.
 
 **Behavior:**
+
 * Only past commands that were successfully executed (did not provide an error) will be accessible
 
 ### Viewing help : `help`
@@ -94,7 +112,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a student: `add`
 
@@ -114,7 +131,8 @@ Adds a student to the address book.
 
 * `add n/John Doe p/98765432 e/johnd@example.com u/johndoe123`
 * `add n/Betsy Crowe p/12345678 e/betsycrowe@example.com u/betsycrowe t/friend`
-* `add n/John Doe p/98765432 e/johnd@example.com u/johndoe123 t/course:CS2103` - Adds the student John Doe belonging to the course CS2103
+* `add n/John Doe p/98765432 e/johnd@example.com u/johndoe123 t/course:CS2103` - Adds the student John Doe belonging to
+  the course CS2103
 
 ---
 
@@ -142,7 +160,8 @@ Adds a teaching staff (tutor) to the address book. You can provide only the name
 **Examples:**
 
 * `add staff n/Jane Smith` — Adds teaching staff with default position "Teaching Assistant".
-* `add staff n/Dr Lee p/91234567 e/lee@example.com u/drlee pos/Professors t/colleagues` — Adds teaching staff with full details.
+* `add staff n/Dr Lee p/91234567 e/lee@example.com u/drlee pos/Professors t/colleagues` — Adds teaching staff with full
+  details.
 
 ---
 
@@ -172,16 +191,18 @@ Shows only students (persons who are not teaching staff) in the address book.
 
 ### Adding a tutor availability slot : `tutorslot`
 
-Adds an availability time slot to a teaching staff member. This allows tutors and professors to specify when they are available to teach.
+Adds an availability time slot to a teaching staff member. This allows tutors and professors to specify when they are
+available to teach.
 
 **Format:** `tutorslot INDEX SLOT`
 
 **Parameters:**
 
-* `INDEX`: Must be a positive integer (1, 2, 3, …) referring to the position of a **teaching staff member** in the **currently displayed** list.
+* `INDEX`: Must be a positive integer (1, 2, 3, …) referring to the position of a **teaching staff member** in the *
+  *currently displayed** list.
 * `SLOT`: Must be in format `DAY-START-END`, where:
-  * `DAY` is one of: `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun` (case-insensitive).
-  * `START` and `END` are hours (0–23). `START` must be before `END`.
+    * `DAY` is one of: `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun` (case-insensitive).
+    * `START` and `END` are hours (0–23). `START` must be before `END`.
 
 **Behavior:**
 
@@ -243,7 +264,7 @@ Edits an existing person in the address book. For teaching staff, you can also c
 * Updates the specified fields; unspecified fields are unchanged.
 * Same validation constraints as `add` / `add staff` apply.
 * When editing tags, existing tags are replaced (not cumulative). Use `t/` with no value to clear all tags.
-**Examples:**
+  **Examples:**
 
 * `edit 1 p/91234567 e/johndoe@example.com` — Edits the 1st person's phone and email.
 * `edit 2 n/Betsy Crower t/` — Edits the 2nd person's name and clears all tags.
@@ -252,6 +273,7 @@ Edits an existing person in the address book. For teaching staff, you can also c
 ---
 
 ### Adding tags to a person
+
 Appends tags to an existing person, without having to respecify all existing tags
 
 **Format:** `tag-add INDEX [t/TAG]…`
@@ -259,42 +281,47 @@ Appends tags to an existing person, without having to respecify all existing tag
 **Parameters:**
 
 * `INDEX`: Must be a positive integer (1, 2, 3, …​) referring to the position in the **currently displayed** list.
-* `TAG`: At least one must be provided. Can be used multiple times. See [Types of tags](#types-of-tags) for more details.
+* `TAG`: At least one must be provided. Can be used multiple times. See [Types of tags](#types-of-tags) for more
+  details.
 
 **Behavior:**
 
-* Unlike the `edit` command, `tag-add` will not override existing tags. Instead, all tags specified will be added to the person's list of tags.
+* Unlike the `edit` command, `tag-add` will not override existing tags. Instead, all tags specified will be added to the
+  person's list of tags.
 * A warning will be generated if any of the tags already exist (but command will still succeed)
 
 **Examples:**
 
-* `tag-add 1 t/needsHelp t/course:CS2103T t/tut:10` - Adds tags to indicate that the first visible person is in the course CS2103T who resides in tutorial group 10 and needs help
+* `tag-add 1 t/needsHelp t/course:CS2103T t/tut:10` - Adds tags to indicate that the first visible person is in the
+  course CS2103T who resides in tutorial group 10 and needs help
 
 ### Locating persons by name/tag: `find`
 
 Finds persons whose names contain any of the given keywords and/or who have any of the specified tags.
 
-**Format:** `find [KEYWORD [MORE_KEYWORDS]...] [t/TAG [MORE_TAGS]...] [e/EMAIL [MORE_EMAILS]...] [u/USERNAME [USERNAMES]...]`
+**Format:**
+`find [KEYWORD [MORE_KEYWORDS]...] [t/TAG [MORE_TAGS]...] [e/EMAIL [MORE_EMAILS]...] [u/USERNAME [USERNAMES]...]`
 
 **Note:** At least one keyword or tag must be provided.
 
 **Behavior:**
 
 * **Name search:** Keywords match against person names (case-insensitive)
-  * The order of keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-  * Only full words will be matched e.g. `Han` will not match `Hans`
-  * Persons matching at least one keyword will be returned (i.e. `OR` search)
+    * The order of keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+    * Only full words will be matched e.g. `Han` will not match `Hans`
+    * Persons matching at least one keyword will be returned (i.e. `OR` search)
 
 * **Tag search:** Tags match against person tags (case-insensitive)
-  * Persons with at least one matching tag will be returned (i.e. `OR` search)
+    * Persons with at least one matching tag will be returned (i.e. `OR` search)
 
 * **Email search:** Keywords match against person emails (case-insensitive)
     * Persons matching at least one keyword will be returned (i.e. `OR` search)
 
+* **Combined search:** If both keywords and tags are provided, persons must match at least one keyword **AND** at least
+  one tag (i.e. `AND` between name and tag criteria)
+
 * **Username search:** Keywords match against person username (case-insensitive)
     * Persons matching at least one keyword will be returned (i.e. `OR` search)
-
-* **Combined search:** If both keywords and tags are provided, persons must match at least one keyword **AND** at least one tag (i.e. `AND` between name and tag criteria)
 
 **Examples:**
 
@@ -304,6 +331,8 @@ Finds persons whose names contain any of the given keywords and/or who have any 
 * `find t/colleagues t/important` — Returns all persons tagged with either "colleagues" or "important"
 * `find John t/friends` — Returns persons with "John" in their name who are also tagged with "friends"<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+---
 
 ### Deleting a person : `delete`
 
@@ -317,7 +346,8 @@ Deletes the specified person from the address book. Works for both students and 
 
 **Behavior:**
 
-* Permanently removes the person at that index. The list may be the full list (`list`), only staff (`staffslist`), or only students (`studentslist`).
+* Permanently removes the person at that index. The list may be the full list (`list`), only staff (`staffslist`), or
+  only students (`studentslist`).
 * Operation cannot be undone.
 
 **Examples:**
@@ -326,17 +356,23 @@ Deletes the specified person from the address book. Works for both students and 
 * `staffslist` then `delete 1` — Deletes the 1st teaching staff in the staff list.
 * `find Betsy` then `delete 1` — Deletes the 1st person in the find results.
 
+---
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
+---
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+---
 
 ### Exporting contacts : `export`
 
@@ -346,7 +382,8 @@ Exports all contacts in the address book to a CSV file. This allows you to share
 
 **Parameters:**
 
-* `f/FILE_PATH`: Optional. The file path where contacts should be exported. If not provided, exports to the default location (`./export.csv`).
+* `f/FILE_PATH`: Optional. The file path where contacts should be exported. If not provided, exports to the default
+  location (`./export.csv`).
 
 **Behavior:**
 
@@ -360,55 +397,80 @@ Exports all contacts in the address book to a CSV file. This allows you to share
 * `export f/contacts.csv` — Exports contacts to `contacts.csv` in the current directory.
 * `export f/backup/students.csv` — Exports contacts to `backup/students.csv`.
 
+---
+
+### Importing contacts : `import`
+
+Import contacts from the given file path of a .csv file.
+
+**Format:** `import f/FILE`
+
+**Parameters:**
+
+* `FILE`: Required. Needs to be a valid file path to a csv file generated from the `export` command.
+
+**Behavior:**
+
+* Only the contacts who are not currently in the address book will be added.
+
+**Examples:**
+
+* `import f/./contacts.csv` — Imports all contacts from `contacts.csv`.
+
+---
+
 ### Saving the data
 
-Doritus data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Doritus data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 ### Editing the data file
 
-Doritus data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Doritus data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, Doritus will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause Doritus to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data from your previous Doritus home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains
+the data from your previous Doritus home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
+   the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
+   application before running the application again.
+2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
+   `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to
+   manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action | Format, Examples |
-|--------|------------------|
-| **Add student** | `add n/NAME p/PHONE e/EMAIL u/USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/82224345 e/jamesho@example.com u/jamesho t/friend` |
-| **Add staff** | `add staff n/NAME` or `add staff n/NAME p/PHONE e/EMAIL u/USERNAME pos/POSITION [t/TAG]…​` <br> e.g., `add staff n/Jane Smith` or `add staff n/Dr Lee p/91234567 e/lee@example.com u/drlee pos/Professors` |
-| **List all** | `list` |
-| **List staff only** | `staffslist` |
-| **List students only** | `studentslist` |
-| **Tutor slot** | `tutorslot INDEX SLOT` <br> e.g., `tutorslot 1 mon-10-12` |
-| **Tutor dashboard** | `tutordashboard` |
-| **Add Tags** | `tag-add INDEX [t/TAG]…` <br> e.g., `tag-add 1 t/needsHelp t/course:CS2103T t/tut:10` |
-| **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/USERNAME] [pos/POSITION] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com` or `edit 1 pos/Professors` (staff only) |
-| **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake` |
-| **Delete** | `delete INDEX` <br> e.g., `delete 3` (index from current list: full, staff, or students) |
-| **Clear** | `clear` |
-| **Export** | `export [f/FILE_PATH]` <br> e.g., `export` or `export f/contacts.csv` |
-| **Help** | `help` |
-| **Exit** | `exit` |
+| Action                 | Format, Examples                                                                                                                                                                                           |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add student**        | `add n/NAME p/PHONE e/EMAIL u/USERNAME [t/TAG]…​` <br> e.g., `add n/James Ho p/82224345 e/jamesho@example.com u/jamesho t/friend`                                                                          |
+| **Add staff**          | `add staff n/NAME` or `add staff n/NAME p/PHONE e/EMAIL u/USERNAME pos/POSITION [t/TAG]…​` <br> e.g., `add staff n/Jane Smith` or `add staff n/Dr Lee p/91234567 e/lee@example.com u/drlee pos/Professors` |
+| **List all**           | `list`                                                                                                                                                                                                     |
+| **List staff only**    | `staffslist`                                                                                                                                                                                               |
+| **List students only** | `studentslist`                                                                                                                                                                                             |
+| **Tutor slot**         | `tutorslot INDEX SLOT` <br> e.g., `tutorslot 1 mon-10-12`                                                                                                                                                  |
+| **Tutor dashboard**    | `tutordashboard`                                                                                                                                                                                           |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/USERNAME] [pos/POSITION] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com` or `edit 1 pos/Professors` (staff only)                             |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                |
+| **Delete**             | `delete INDEX` <br> e.g., `delete 3` (index from current list: full, staff, or students)                                                                                                                   |
+| **Clear**              | `clear`                                                                                                                                                                                                    |
+| **Import**             | `import f/FILE` <br> e.g., `import f/./contacts.csv`                                                                                                                                                       |
+| **Export**             | `export [f/FILE_PATH]` <br> e.g., `export` or `export f/contacts.csv`                                                                                                                                      |
+| **Help**               | `help`                                                                                                                                                                                                     |
+| **Exit**               | `exit`                                                                                                                                                                                                     |
