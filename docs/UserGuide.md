@@ -401,6 +401,7 @@ _Details coming soon ..._
 | **List students only** | `studentslist` |
 | **Tutor slot** | `tutorslot INDEX SLOT` <br> e.g., `tutorslot 1 mon-10-12` |
 | **Tutor dashboard** | `tutordashboard` |
+| **Add Tags** | `tag-add INDEX [t/TAG]…` <br> e.g., `tag-add 1 t/needsHelp t/course:CS2103T t/tut:10` |
 | **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [u/USERNAME] [pos/POSITION] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com` or `edit 1 pos/Professors` (staff only) |
 | **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake` |
 | **Delete** | `delete INDEX` <br> e.g., `delete 3` (index from current list: full, staff, or students) |
