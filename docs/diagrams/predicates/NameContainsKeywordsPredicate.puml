@@ -5,8 +5,20 @@ top to bottom direction
 skinparam linetype ortho
 
 annotation FunctionalInterface << annotation >>
-class NameContainsKeywordsPredicate
-interface Predicate<T> << interface >>
+class NameContainsKeywordsPredicate {
+  - keywords: List<String>
+  + test(Person): boolean
+  + equals(Object): boolean
+  + toString(): String
+}
+interface Predicate<T> << interface >> {
+  + or(Predicate<T>): Predicate<T>
+  + isEqual(Object): Predicate<T>
+  + not(Predicate<T>): Predicate<T>
+  + and(Predicate<T>): Predicate<T>
+  + test(T): boolean
+  + negate(): Predicate<T>
+}
 
 NameContainsKeywordsPredicate  -[#008200,dashed]-^  Predicate
 Predicate                      -[#999900,dotted]-  FunctionalInterface
