@@ -56,6 +56,13 @@ public class FindPersonDescriptorTest {
         fdTwo = new FindPersonDescriptor();
         fdTwo.setTags(Set.of(new Tag("colleagues"), new Tag("students")));
         assertFalse(fdOne.equals(fdTwo));
+
+        // different usernames -> returns false
+        fdOne = new FindPersonDescriptor();
+        fdOne.setUsername(Set.of("first", "second"));
+        fdTwo = new FindPersonDescriptor();
+        fdTwo.setUsername(Set.of("colleagues", "students"));
+        assertFalse(fdOne.equals(fdTwo));
     }
 
     @Test
