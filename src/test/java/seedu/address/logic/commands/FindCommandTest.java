@@ -149,7 +149,7 @@ public class FindCommandTest {
     public void execute_usernamePredicate_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         FindPersonDescriptor fd = new FindPersonDescriptor();
-        fd.setUsername(Set.of("alicepauline"));
+        fd.setUsername(Set.of("daniel"));
         FindCommand command = new FindCommand(fd);
         expectedModel.updateFilteredPersonList(
                 person -> fd.getNamePredicate().test(person) && fd.getTagsPredicate().test(person)
