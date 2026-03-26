@@ -146,6 +146,19 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_usernamePredicate_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        FindPersonDescriptor fd = new FindPersonDescriptor();
+        fd.setUsername(Set.of("daniel"));
+        FindCommand command = new FindCommand(fd);
+        expectedModel.updateFilteredPersonList(
+                person -> fd.getNamePredicate().test(person) && fd.getTagsPredicate().test(person)
+                        && fd.getEmailPredicate().test(person) && fd.getUsernamePredicate().test(person));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
     public void equals_withTagPredicate() {
         Set<String> names = processInput("Alice");
         Set<Tag> tags = Set.of(new Tag("colleague"));

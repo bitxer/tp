@@ -83,4 +83,28 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " e/alice", expectedFindCommand);
     }
 
+
+    @Test
+    public void parse_validArgsWithUsername_returnsFindCommand() {
+        // name keywords with tag
+        FindPersonDescriptor fd = new FindPersonDescriptor();
+        fd.setName(Set.of("Alice", "Bob"));
+        fd.setTags(Set.of(new Tag("friends")));
+        fd.setEmail(Set.of("alice"));
+        fd.setUsername(Set.of("aliceee"));
+        FindCommand expectedFindCommand = new FindCommand(fd);
+        assertParseSuccess(parser, "Alice Bob t/friends u/aliceee e/alice ", expectedFindCommand);
+
+        // multiple whitespaces with tags
+        assertParseSuccess(parser, " \n Alice \n \t Bob \t t/friends \n\t e/alice u/aliceee", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgsWithUsernameOnly_returnsFindCommand() {
+        // tag only, no name keywords
+        FindPersonDescriptor fd = new FindPersonDescriptor();
+        fd.setUsername(Set.of("aliceee"));
+        FindCommand expectedFindCommand = new FindCommand(fd);
+        assertParseSuccess(parser, " u/aliceee", expectedFindCommand);
+    }
 }

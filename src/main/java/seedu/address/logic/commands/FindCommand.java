@@ -18,6 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.TagsContainsTagPredicate;
+import seedu.address.model.person.predicate.UsernameContainsKeywordsPredicate;
 import seedu.address.model.tag.AbstractTag;
 
 /**
@@ -54,6 +55,7 @@ public class FindCommand extends Command {
 
         Predicate<Person> predicate = findPersonDescriptor.getNamePredicate()
                 .and(findPersonDescriptor.getEmailPredicate())
+                .and(findPersonDescriptor.getUsernamePredicate())
                 .and(findPersonDescriptor.getTagsPredicate());
 
         model.updateFilteredPersonList(predicate);
@@ -92,6 +94,7 @@ public class FindCommand extends Command {
         private Set<String> name;
         private Set<String> phone;
         private Set<String> email;
+        private Set<String> username;
         private Set<AbstractTag> tags;
 
         public FindPersonDescriptor() {}
@@ -104,6 +107,7 @@ public class FindCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setUsername(toCopy.username);
             setTags(toCopy.tags);
         }
 
@@ -139,6 +143,20 @@ public class FindCommand extends Command {
             return (email != null) ? new EmailContainsKeywordsPredicate(new ArrayList<>(email)) : PREDICATE_TRUE;
         }
 
+        public void setUsername(Set<String> username) {
+            this.username = username;
+        }
+
+        public Optional<Set<String>> getUsername() {
+            return Optional.ofNullable(username).map(Collections::unmodifiableSet);
+        }
+
+        public Predicate<Person> getUsernamePredicate() {
+            return (username != null)
+                    ? new UsernameContainsKeywordsPredicate(new ArrayList<>(username))
+                    : PREDICATE_TRUE;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -172,6 +190,7 @@ public class FindCommand extends Command {
             }
 
             return Objects.equals(name, otherFindPersonDescriptor.name)
+                    && Objects.equals(username, otherFindPersonDescriptor.username)
                     && Objects.equals(phone, otherFindPersonDescriptor.phone)
                     && Objects.equals(email, otherFindPersonDescriptor.email)
                     && Objects.equals(tags, otherFindPersonDescriptor.tags);
@@ -181,6 +200,7 @@ public class FindCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
+                    .add("username", username)
                     .add("phone", phone)
                     .add("email", email)
                     .add("tags", tags)
