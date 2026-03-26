@@ -47,6 +47,10 @@ fast, Doritus can get your contact management tasks done faster than traditional
 
     * `delete 3` : Deletes the 3rd person shown in the current list (works for both students and staff).
 
+    * `export` : Exports all contacts to a CSV file.
+
+    * `import` : Imports contacts from a CSV file.
+
     * `clear` : Deletes all contacts.
 
     * `exit` : Exits the app.
@@ -309,30 +313,42 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+---
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+---
 
-Doritus data are saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+### Exporting contacts : `export`
 
-### Editing the data file
+Exports all contacts in the address book to a CSV file. This allows you to share or back up your contacts data.
 
-Doritus data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
-welcome to update data directly by editing that data file.
+**Format:** `export [f/FILE_PATH]`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, Doritus will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause Doritus to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+**Parameters:**
+
+* `f/FILE_PATH`: Optional. The file path where contacts should be exported. If not provided, exports to the default
+  location (`./export.csv`).
+
+**Behavior:**
+
+* Exports all contacts (both students and teaching staff) in the current address book to a CSV file.
+* If the file already exists, it will be overwritten.
+* The CSV file includes contact details such as name, phone, email, username, position, and tags.
+
+**Examples:**
+
+* `export` — Exports contacts to `./export.csv` (default location).
+* `export f/contacts.csv` — Exports contacts to `contacts.csv` in the current directory.
+* `export f/backup/students.csv` — Exports contacts to `backup/students.csv`.
 
 ---
 
-### Import contacts : `import`
+### Importing contacts : `import`
 
 Import contacts from the given file path of a .csv file.
 
@@ -352,24 +368,20 @@ Import contacts from the given file path of a .csv file.
 
 ---
 
-### Export contacts : `export`
+### Saving the data
 
-Export contacts to the given file path.
+Doritus data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
-**Format:** `export [f/FILE]`
+### Editing the data file
 
-**Parameters:**
+Doritus data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+welcome to update data directly by editing that data file.
 
-* `FILE`: Optional. Needs to be a valid file path.
-
-**Behavior:**
-
-* If `FILE` is not provided, the contacts will be imported to the `<current working directory>/export.csv`.
-
-**Examples:**
-
-* `export` — Exports all contacts to `./export.csv`.
-* `export f/./contacts.csv` — Exports all contacts to `./contacts.csv`.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file make its format invalid, Doritus will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause Doritus to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -407,7 +419,7 @@ the data from your previous Doritus home folder.
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                |
 | **Delete**             | `delete INDEX` <br> e.g., `delete 3` (index from current list: full, staff, or students)                                                                                                                   |
 | **Clear**              | `clear`                                                                                                                                                                                                    |
+| **Import**             | `import f/FILE` <br> e.g., `import f/./contacts.csv`                                                                                                                                                       |
+| **Export**             | `export [f/FILE_PATH]` <br> e.g., `export` or `export f/contacts.csv`                                                                                                                                      |
 | **Help**               | `help`                                                                                                                                                                                                     |
 | **Exit**               | `exit`                                                                                                                                                                                                     |
-| **Import contacts**    | `import f/FILE` <br> e.g., `import f/./contacts.csv`                                                                                                                                                       |
-| **Export contacts**    | `export [f/FILE]` <br> e.g., `export` or `export f/./contacts.csv`                                                                                                                                         |
