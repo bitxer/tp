@@ -42,8 +42,8 @@ public class PhoneContainsSequencePredicateTest {
 
     @Test
     public void test_phoneSequenceNull() {
-        assertThrows(AssertionError.class,
-                () -> new PhoneContainsSequencePredicate(null).test(new PersonBuilder().build()));
+        assertThrows(AssertionError.class, () -> new PhoneContainsSequencePredicate(null)
+                .test(new PersonBuilder().build()));
     }
 
     @Test

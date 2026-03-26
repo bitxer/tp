@@ -42,8 +42,8 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameKeywordsNull() {
-        assertThrows(AssertionError.class,
-                () -> new NameContainsKeywordsPredicate(null).test(new PersonBuilder().build()));
+        assertThrows(AssertionError.class, () -> new NameContainsKeywordsPredicate(null)
+                .test(new PersonBuilder().build()));
     }
 
     @Test

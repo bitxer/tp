@@ -42,8 +42,8 @@ public class EmailContainsKeywordsPredicateTest {
 
     @Test
     public void test_emailKeywordsNull() {
-        assertThrows(AssertionError.class,
-                () -> new EmailContainsKeywordsPredicate(null).test(new PersonBuilder().build()));
+        assertThrows(AssertionError.class, () -> new EmailContainsKeywordsPredicate(null)
+                .test(new PersonBuilder().build()));
     }
 
     @Test
