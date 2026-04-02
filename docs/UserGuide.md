@@ -314,7 +314,7 @@ Finds persons whose names contain any of the given keywords and/or who have any 
 
 * **Name search:** Keywords match against person names (case-insensitive)
     * The order of keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-    * Only full words will be matched e.g. `Han` will not match `Hans`
+    * Keywords is matched using substring e.g. `Han` will match `Hans`
     * Persons matching at least one keyword will be returned (i.e. `OR` search)
 
 * **Tag search:** Tags match against person tags (case-insensitive)
@@ -322,12 +322,15 @@ Finds persons whose names contain any of the given keywords and/or who have any 
 
 * **Email search:** Keywords match against person emails (case-insensitive)
     * Persons matching at least one keyword will be returned (i.e. `OR` search)
+    * Keywords is matched using substring e.g. `mail` will match `example@gmail.com`
+
+* **Username search:** Keywords match against person username (case-insensitive)
+    * Persons matching at least one keyword will be returned (i.e. `OR` search)
+    * Keywords is matched using substring e.g. `ice` will match `alice`
 
 * **Combined search:** If both keywords and tags are provided, persons must match at least one keyword **AND** at least
   one tag (i.e. `AND` between name and tag criteria)
 
-* **Username search:** Keywords match against person username (case-insensitive)
-    * Persons matching at least one keyword will be returned (i.e. `OR` search)
 
 **Examples:**
 
