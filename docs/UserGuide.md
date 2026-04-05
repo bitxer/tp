@@ -8,7 +8,7 @@ a Command Line Interface** (CLI) while still having the benefits of a Graphical 
 fast, Doritus can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
